@@ -27,6 +27,10 @@ Four comprehensive sections:
 - **Linux News**: News sites and communities (20 links)
 - **Linux Forums & Repos**: Forums, repositories, and resources (21 links)
 
+## Screenshot
+
+![Home Page](public/screenshot.png)
+
 ## Technology Stack
 
 - **Astro 4.x**: Static site generator
