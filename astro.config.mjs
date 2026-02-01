@@ -5,6 +5,6 @@ export default defineConfig({
   base: '/astro-webhome',
   output: 'static',
   build: {
-    format: 'file'
+    format: 'directory'
   }
 });
