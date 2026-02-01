@@ -1,0 +1,157 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const ministerstva = [
+  { name: 'Влада на РСМ', url: 'https://vlada.mk/', abbrev: 'MO' },
+  { name: 'Министерство за Одбрана', url: 'https://www.mod.gov.mk/', abbrev: 'MO' },
+  { name: 'Министерство за Внатрешни работи', url: 'https://mvr.gov.mk', abbrev: 'MV' },
+  { name: 'Министерство за Правда', url: 'https://pravda.gov.mk', abbrev: 'MP' },
+  { name: 'Министерство за Односи Меѓу Заедниците', url: 'https://moz.gov.mk', abbrev: 'MZ' },
+  { name: 'Министерство за Надворешни работи и надворешна трговија', url: 'https://mfa.gov.mk', abbrev: 'MN' },
+  { name: 'Министерство за Европски Прашања', url: 'https://www.mep.gov.mk/', abbrev: 'ME' },
+  { name: 'Министерство за Финансии', url: 'https://finance.gov.mk', abbrev: 'MF' },
+  { name: 'Министерство за Здравство', url: 'https://zdravstvo.gov.mk', abbrev: 'MZ' },
+  { name: 'Министерство за Економија и труд', url: 'https://economy.gov.mk', abbrev: 'ET' },
+  { name: 'Министерство за Транспорт', url: 'http://www.mtc.gov.mk/', abbrev: 'MT' },
+  { name: 'Министерство за Дигитална Трансформација', url: 'https://mdt.gov.mk', abbrev: 'DT' },
+  { name: 'Министерство за Јавна Администрација', url: 'https://mioa.gov.mk', abbrev: 'JA' },
+  { name: 'Министерство за Култура и Туризам', url: 'https://kultura.gov.mk', abbrev: 'KT' },
+  { name: 'Министерство за Локална Самоуправа', url: 'https://mls.gov.mk', abbrev: 'LS' },
+  { name: 'Министерство за Земјоделство, Шумарство и Водостопанство', url: 'https://mzsv.gov.mk', abbrev: 'ZV' },
+  { name: 'Министерство за Социјална Политика, Демографија и  Млади', url: 'https://mtsp.gov.mk', abbrev: 'SP' },
+  { name: 'Министерство за Енергетика, Рударство и Минерални Суровини', url: 'https://energy.gov.mk/', abbrev: 'ER' },
+  { name: 'Министерство за Образование и Наука', url: 'https://mon.gov.mk', abbrev: 'ON' },
+  { name: 'Министерство за Животна средина и Просторно Планирање', url: 'https://moepp.gov.mk', abbrev: 'ZS' },
+  { name: 'Министерство за Спорт', url: 'https://ms.gov.mk/', abbrev: 'MS' }
+];
+
+const institucii = [
+  { name: 'Службен Весник', url: 'https://slvesnik.com.mk', abbrev: 'SV' },
+  { name: 'Управа за јавни приходи', url: 'https://ujp.gov.mk', abbrev: 'UJ' },
+  { name: 'Агенција за вработување на РСМ', url: 'https://av.gov.mk', abbrev: 'AV' },
+  { name: 'Фонд за Здравствено Осигурување', url: 'https://fzo.org.mk', abbrev: 'FZ' },
+  { name: 'Фонд за пензиско и инвалидско осигурување', url: 'https://fpiom.com.mk', abbrev: 'FP' },
+  { name: 'Агенција за катастар на недвижности', url: 'https://katastar.gov.mk', abbrev: 'AK' },
+  { name: 'Централен Регистар на РСМ', url: 'https://crm.com.mk', abbrev: 'CR' },
+  { name: 'Државен завод за статистика', url: 'https://stat.mk', abbrev: 'DZ' },
+  { name: 'Биро за јавни набавки', url: 'https://bjn.gov.mk', abbrev: 'BJ' },
+  { name: 'Општина Битола', url: 'https://bitola.gov.mk', abbrev: 'OB' },
+  { name: 'Е.Н.Е.Р.', url: 'https://ener.gov.mk', abbrev: 'EN' },
+  { name: 'Државна Матура', url: 'https://matura.gov.mk', abbrev: 'DM' },
+  { name: 'Државен испитен центар', url: 'https://dic.edu.mk', abbrev: 'DI' },
+  { name: 'Биро за развој на образованието', url: 'https://bro.gov.mk', abbrev: 'BR' },
+  { name: 'Центар за стручно образование и наука', url: 'https://csoo.edu.mk', abbrev: 'CS' },
+  { name: 'Пријава на Агенција за Администрација на РСМ', url: 'https://prijava.aa.gov.mk', abbrev: 'PA' },
+  { name: 'Агенција за Администрација на РСМ', url: 'https://aa.gov.mk', abbrev: 'AA' },
+  { name: 'Državen Zavod za Revizija', url: 'https://dzr.gov.mk', abbrev: 'DR' },
+  { name: 'Македонска Пошта', url: 'https://posta.com.mk', abbrev: 'MP' },
+  { name: 'И.С.О.С.', url: 'https://www.isos.mk/', abbrev: 'IS' }
+];
+
+const banki = [
+  { name: 'Алта Банка АД Скопје', url: 'https://altabanka.com.mk/', abbrev: 'SB' },
+  { name: 'Стопанска Банка АД Скопје', url: 'https://stb.com.mk', abbrev: 'SS' },
+  { name: 'Шпаркасе Банка АД Скопје', url: 'https://sparkasse.mk', abbrev: 'SP' },
+  { name: 'Комерцијална Банка АД Скопје', url: 'https://kb.com.mk', abbrev: 'KB' },
+  { name: 'НЛБ Тутунска Банка', url: 'https://nlb.mk', abbrev: 'NL' },
+  { name: 'Халк Банка АД Скопје', url: 'https://halkbank.mk', abbrev: 'HB' },
+  { name: 'ТТК Банка АД Скопје', url: 'https://www.ttk.com.mk/', abbrev: 'TT' },
+  { name: 'Про Кредит Банка АД Скопје', url: 'https://procreditbank.mk', abbrev: 'PC' },
+  { name: 'УНИ Банка', url: 'https://www.unibank.mk/', abbrev: 'UB' },
+  { name: 'Силк Роуд Банка', url: 'https://silkroadbank.mk', abbrev: 'SR' },
+  { name: 'Централна Кооперативна Банка', url: 'https://cbank.mk', abbrev: 'CK' },
+  { name: 'Капитал Банка АД Скопје', url: 'https://www.capitalbank.com.mk/', abbrev: 'KA' },
+  { name: 'Развојна Банка на РСМ АД Скопје', url: 'https://www.mbdp.com.mk/', abbrev: 'RB' },
+  { name: 'Народна Банка на РСМ', url: 'https://nbrm.mk', abbrev: 'NB' },
+  { name: 'Штедилница Фулм ДОО Скопје', url: 'https://fulm.com.mk', abbrev: 'SF' },
+  { name: 'Штедилница Можности ДОО Скопје', url: 'https://moznosti.mk', abbrev: 'SM' },
+  { name: 'Цемак Кредити финансиско друштво', url: 'https://cemak.mk', abbrev: 'CE' },
+  { name: 'Менувачници во РСМ', url: 'https://www.nbrm.mk/mienuvacnici.nspx', abbrev: 'MV' },
+  { name: 'МК Берза на хартии од вредност', url: 'https://www.mse.mk/mk', abbrev: 'MB' },
+  { name: 'Фонд за осигурување на депозити', url: 'http://www.fodsk.org.mk/', abbrev: 'FO' },
+  { name: 'KIBSTrust Македонија', url: 'https://kibstrust.mk', abbrev: 'KT' }
+];
+---
+
+<Layout title="Institucii - Bookmark Dashboard">
+  <h1 class="page-header">ДРЖАВНИ ИНСТИТУЦИИ</h1>
+  
+  <div class="institutional-tabs">
+    <div class="institutional-tab-nav">
+      <button class="institutional-tab-btn active" onclick="switchInstitutionalTab('ministerstva')">
+        МИНИСТЕРСТВА
+      </button>
+      <button class="institutional-tab-btn" onclick="switchInstitutionalTab('institucii')">
+        ИНСТИТУЦИИ
+      </button>
+      <button class="institutional-tab-btn" onclick="switchInstitutionalTab('banki')">
+        БАНКИ
+      </button>
+    </div>
+
+    <!-- Ministerstva Tab -->
+    <div id="tab-ministerstva" class="institutional-tab-content active">
+      <div class="group">
+        <div class="links-grid institutional-grid" style="grid-template-columns: repeat(5, 1fr);">
+          {ministerstva.map(ministry => (
+            <a href={ministry.url} target="_blank" class="link-item" data-abbrev={ministry.abbrev}>
+              {ministry.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Institucii Tab -->
+    <div id="tab-institucii" class="institutional-tab-content">
+      <div class="group">
+        <div class="links-grid institutional-grid" style="grid-template-columns: repeat(5, 1fr);">
+          {institucii.map(institution => (
+            <a href={institution.url} target="_blank" class="link-item" data-abbrev={institution.abbrev}>
+              {institution.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Banki Tab -->
+    <div id="tab-banki" class="institutional-tab-content">
+      <div class="group">
+        <div class="links-grid institutional-grid" style="grid-template-columns: repeat(5, 1fr);">
+          {banki.map(bank => (
+            <a href={bank.url} target="_blank" class="link-item" data-abbrev={bank.abbrev}>
+              {bank.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  @media (max-width: 1200px) {
+    .institutional-grid {
+      grid-template-columns: repeat(4, 1fr) !important;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .institutional-grid {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .institutional-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .institutional-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

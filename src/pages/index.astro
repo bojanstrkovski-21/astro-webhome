@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const homeLinks = {
+  elektronskaPosta: [
+    { name: 'Gmail', url: 'https://gmail.com', abbrev: 'GM' },
+    { name: 'Hotmail/Live/Outlook', url: 'https://outlook.live.com', abbrev: 'OL' },
+    { name: 'Yahoo Mail', url: 'https://login.yahoo.com/', abbrev: 'YM' },
+    { name: 'Proton Mail', url: 'https://mail.proton.me', abbrev: 'PM' }
+  ],
+  info: [
+    { name: 'YouTube', url: 'https://youtube.com', abbrev: 'YT' },
+    { name: 'Odysee', url: 'https://odysee.com', abbrev: 'OD' },
+    { name: 'Wikipedia EN', url: 'https://en.wikipedia.org', abbrev: 'WE' },
+    { name: 'Wikipedia MK', url: 'https://mk.wikipedia.org', abbrev: 'WM' },
+    { name: 'Time and Date', url: 'https://timeanddate.com', abbrev: 'TD' },
+    { name: 'Yr Weather', url: 'https://yr.no', abbrev: 'YR' },
+    { name: '24 Vesti', url: 'https://24vesti.mk', abbrev: '24' },
+    { name: 'Time MK', url: 'https://time.mk', abbrev: 'TM' }
+  ],
+  klaudProstor: [
+    { name: 'Dropbox', url: 'https://dropbox.com', abbrev: 'DB' },
+    { name: 'Google Drive', url: 'https://drive.google.com', abbrev: 'GD' },
+    { name: 'OneDrive', url: 'https://onedrive.live.com', abbrev: 'OD' },
+    { name: 'WeTransfer', url: 'https://wetransfer.com', abbrev: 'WT' },
+    { name: 'Swiss Transfer', url: 'https://swisstransfer.com', abbrev: 'ST' },
+    { name: 'Cloudflare', url: 'https://cloudflare.com', abbrev: 'CF' },
+    { name: 'MKHost', url: 'https://mkhost.mk', abbrev: 'MK' },
+    { name: 'Netlify', url: 'https://netlify.com', abbrev: 'NL' }
+  ]
+};
+---
+
+<Layout title="Home - Bookmark Dashboard">
+  <div class="search-container">
+    <div class="search-box">
+      <input 
+        type="text" 
+        id="search-input" 
+        class="search-input" 
+        placeholder="Enter your search query..."
+      />
+      <select id="search-engine" class="search-engine-select">
+        <option value="google">Google</option>
+        <option value="bing">Bing</option>
+        <option value="duckduckgo">DuckDuckGo</option>
+        <option value="yahoo">Yahoo</option>
+        <option value="yandex">Yandex</option>
+        <option value="baidu">Baidu</option>
+      </select>
+    </div>
+    <button onclick="performSearch()" class="search-btn">
+      Search
+    </button>
+  </div>
+
+  <div class="groups-container">
+    <div class="group">
+      <h2 class="group-header">Elektronska Pošta</h2>
+      <div class="links-grid">
+        {homeLinks.elektronskaPosta.map(link => (
+          <a href={link.url} target="_blank" class="link-item" data-abbrev={link.abbrev}>
+            {link.name}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="group">
+      <h2 class="group-header">Info</h2>
+      <div class="links-grid">
+        {homeLinks.info.map(link => (
+          <a href={link.url} target="_blank" class="link-item" data-abbrev={link.abbrev}>
+            {link.name}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="group">
+      <h2 class="group-header">Klaud Prostor</h2>
+      <div class="links-grid">
+        {homeLinks.klaudProstor.map(link => (
+          <a href={link.url} target="_blank" class="link-item" data-abbrev={link.abbrev}>
+            {link.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>

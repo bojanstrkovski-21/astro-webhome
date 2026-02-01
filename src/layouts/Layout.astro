@@ -1,0 +1,758 @@
+---
+export interface Props {
+  title?: string;
+}
+
+const { title = 'Bookmark Dashboard' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Personal bookmark dashboard" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <script is:inline>
+        // Set theme instantly via CSS custom properties
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'solid';
+            const root = document.documentElement;
+            root.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+    <style is:global>
+        /* Everforest Medium Dark Theme */
+        :root {
+            --bg-dim: #232a2e;
+            --bg0: #2d353b;
+            --bg1: #343f44;
+            --bg2: #3d484d;
+            --bg3: #475258;
+            --bg4: #4f585e;
+            --bg5: #56635f;
+            --fg: #d3c6aa;
+            --red: #e67e80;
+            --orange: #e69875;
+            --yellow: #dbbc7f;
+            --green: #a7c080;
+            --aqua: #83c092;
+            --blue: #7fbbb3;
+            --purple: #d699b6;
+            --grey0: #7a8478;
+            --grey1: #859289;
+            --grey2: #9da9a0;
+        }
+        
+        /* Theme Variables */
+        [data-theme="solid"] {
+            --primary-bg: var(--bg0);
+            --secondary-bg: var(--bg1);
+            --accent-bg: var(--bg2);
+            --card-bg: var(--bg1);
+            --text-primary: var(--green);
+            --text-secondary: var(--fg);
+            --text-muted: var(--grey1);
+            --text-accent: var(--blue);
+            --border-color: var(--bg3);
+            --hover-bg: var(--bg2);
+            --button-hover: var(--yellow);
+        }
+        
+        [data-theme="transparent"] {
+            --primary-bg: rgba(45, 53, 59, 0.4);
+            --secondary-bg: rgba(52, 63, 68, 0.4);
+            --accent-bg: rgba(61, 72, 77, 0.3);
+            --card-bg: rgba(52, 63, 68, 0.5);
+            --text-primary: var(--green);
+            --text-secondary: var(--fg);
+            --text-muted: var(--grey1);
+            --text-accent: var(--blue);
+            --border-color: rgba(71, 82, 88, 0.3);
+            --hover-bg: rgba(61, 72, 77, 0.5);
+            --button-hover: var(--yellow);
+            --bg-image: linear-gradient(135deg, rgba(35, 42, 46, 0.3) 0%, rgba(45, 53, 59, 0.3) 50%, rgba(52, 63, 68, 0.3) 100%), url('https://images.unsplash.com/photo-1511497584788-876760111969?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            background: linear-gradient(135deg, rgba(35, 42, 46, 0.9) 0%, rgba(45, 53, 59, 0.9) 50%, rgba(52, 63, 68, 0.9) 100%), url('https://images.unsplash.com/photo-1511497584788-876760111969?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') #2d353b;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            min-height: 100vh;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-image, linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%));
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: var(--text-secondary);
+            min-height: 100vh;
+            overflow-x: auto;
+        }
+        
+        [data-theme="solid"] body {
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .navigation {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            border: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            gap: 20px;
+        }
+        
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 0 0 auto;
+        }
+        
+        .nav-logo {
+            height: 40px;
+            width: auto;
+        }
+        
+        .site-name {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0;
+            flex-wrap: wrap;
+            flex: 1 1 auto;
+            justify-content: center;
+        }
+
+        .nav-tab {
+            background: transparent;
+            color: var(--text-secondary);
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        
+        .nav-tab:first-child {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+        
+        .nav-tab:last-child {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .nav-tab:hover {
+            background: transparent;
+            color: var(--green);
+            border-bottom: 2px solid var(--green);
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 12px rgba(167, 192, 128, 0.4);
+        }
+
+        .nav-tab.active {
+            background: transparent;
+            color: var(--green);
+            border: 2px solid var(--green);
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(167, 192, 128, 0.4);
+        }
+        
+        .theme-switcher {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex: 0 0 auto;
+        }
+        
+        .theme-toggle-btn {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .theme-toggle-btn:hover {
+            border-color: var(--text-primary);
+            transform: rotate(20deg);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--text-primary);
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .search-container {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .search-box {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--primary-bg);
+            color: var(--text-secondary);
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--text-primary);
+            box-shadow: 0 0 0 2px rgba(167, 192, 128, 0.2);
+        }
+
+        .search-engine-select {
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--primary-bg);
+            color: var(--text-secondary);
+            font-size: 14px;
+            cursor: pointer;
+            min-width: 120px;
+        }
+        
+        .search-btn {
+            background: var(--accent-bg);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .search-btn:hover {
+            background: var(--hover-bg);
+            border-color: var(--text-primary);
+        }
+
+        .groups-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .links-grid {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .institutional-grid {
+            display: grid;
+            gap: 12px;
+        }
+        
+        /* Remove column-based layout for transparent theme - make it match solid exactly */
+        [data-theme="transparent"] .groups-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        [data-theme="transparent"] .institutional-tabs {
+            display: block;
+        }
+        
+        [data-theme="transparent"] .institutional-tab-content {
+            padding: 0;
+        }
+        
+        [data-theme="transparent"] .group {
+            flex: none;
+            min-width: auto;
+            max-width: none;
+            background: transparent;
+            backdrop-filter: none;
+            border: none;
+        }
+        
+        [data-theme="transparent"] .links-grid,
+        [data-theme="transparent"] .institutional-grid {
+            display: grid;
+            gap: 12px;
+        }
+        
+        [data-theme="transparent"] .link-item {
+            display: block;
+            padding: 8px 12px;
+            font-size: 14px;
+            background: rgba(52, 63, 68, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        [data-theme="transparent"] .link-item::before {
+            display: none;
+        }
+        
+        [data-theme="transparent"] .service-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            min-height: 80px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        [data-theme="transparent"] .service-button::before {
+            display: none;
+        }
+
+        .group {
+            background: transparent;
+            border-radius: 8px;
+            padding: 0;
+            box-shadow: none;
+            border: none;
+            backdrop-filter: none;
+        }
+
+        .group-header {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 14px;
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .institutional-grid {
+            display: grid;
+            gap: 8px;
+        }
+
+        .link-item {
+            display: block;
+            padding: 8px 12px;
+            background: var(--accent-bg);
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1px solid transparent;
+        }
+
+        .link-item:hover {
+            background: var(--hover-bg);
+            border-color: var(--text-primary);
+            transform: translateX(3px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .service-button {
+            background: var(--card-bg);
+            color: var(--text-secondary);
+            padding: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-button:hover {
+            background: var(--card-bg);
+            border: 2px solid var(--text-primary);
+            color: var(--text-primary);
+            border-radius: 8px;
+        }
+
+        .institutional-tabs {
+            background: transparent;
+            border-radius: 8px;
+            padding: 0;
+            margin-bottom: 25px;
+            box-shadow: none;
+            border: none;
+            backdrop-filter: none;
+        }
+        
+        .institutional-tab-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-bottom: none;
+        }
+        
+        .institutional-tab-btn {
+            flex: 1;
+            background: var(--card-bg);
+            color: var(--text-secondary);
+            padding: 10px 14px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .institutional-tab-btn:first-child {
+            border-top-left-radius: 8px;
+        }
+        
+        .institutional-tab-btn:last-child {
+            border-top-right-radius: 8px;
+        }
+        
+        .institutional-tab-btn:hover {
+            background: var(--hover-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--text-primary);
+            border-radius: 8px;
+        }
+        
+        .institutional-tab-btn.active {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            border: 2px solid var(--text-primary);
+            border-radius: 8px;
+        }
+        
+        .institutional-tab-content {
+            display: none;
+            padding: 0;
+        }
+        
+        .institutional-tab-content.active {
+            display: block !important;
+        }
+        
+        .linux-tabs {
+            background: transparent;
+            border-radius: 8px;
+            padding: 0;
+            margin-bottom: 25px;
+            box-shadow: none;
+            border: none;
+            backdrop-filter: none;
+        }
+        
+        .tab-content-container {
+            position: relative;
+            min-height: 400px;
+        }
+        
+        .linux-tab-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-bottom: none;
+        }
+        
+        .linux-tab-btn {
+            flex: 1;
+            background: var(--card-bg);
+            color: var(--text-secondary);
+            padding: 10px 14px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .linux-tab-btn:first-child {
+            border-top-left-radius: 8px;
+        }
+        
+        .linux-tab-btn:last-child {
+            border-top-right-radius: 8px;
+        }
+        
+        .linux-tab-btn:hover {
+            background: var(--hover-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--text-primary);
+            border-radius: 8px;
+        }
+        
+        .linux-tab-btn.active {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            border: 2px solid var(--text-primary);
+            border-radius: 8px;
+        }
+        
+        .linux-tab-content {
+            display: none;
+            padding: 0;
+        }
+        
+        .linux-tab-content.active {
+            display: block !important;
+        }
+
+        .institutional-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs {
+                justify-content: center;
+            }
+            
+            .nav-tab {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+            
+            .groups-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .button-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .institutional-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .page-header {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navigation">
+            <div class="nav-container">
+                <div class="nav-left">
+                    <img src="/logo-boki.svg" alt="Site Logo" class="nav-logo" />
+                    <span class="site-name">Bojan's HomePage 2026</span>
+                </div>
+                <div class="nav-tabs">
+                    <a href="/" class="nav-tab">Home</a>
+                    <a href="/e-servisi" class="nav-tab">E-servisi</a>
+                    <a href="/institucii" class="nav-tab">Institucii</a>
+                    <a href="/linux" class="nav-tab">Linux</a>
+                </div>
+                <div class="theme-switcher">
+                    <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme">
+                        <span class="theme-icon">☀️</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <main>
+            <slot />
+        </main>
+    </div>
+
+    <script>
+        // Set active tab based on current page
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPath = window.location.pathname;
+            const tabs = document.querySelectorAll('.nav-tab');
+            
+            tabs.forEach(tab => {
+                const href = tab.getAttribute('href');
+                if (href === currentPath || (currentPath === '/' && href === '/')) {
+                    tab.classList.add('active');
+                }
+            });
+            
+            // Sync theme that was already loaded in head
+            const savedTheme = localStorage.getItem('theme') || 'solid';
+            const icon = document.querySelector('.theme-icon');
+            if (icon) {
+                icon.textContent = savedTheme === 'solid' ? '☀️' : '🌙';
+            }
+        });
+
+        // Make functions globally accessible
+        window.toggleTheme = function() {
+            const root = document.documentElement;
+            const icon = document.querySelector('.theme-icon');
+            const currentTheme = root.getAttribute('data-theme') || 'solid';
+            const newTheme = currentTheme === 'solid' ? 'transparent' : 'solid';
+            
+            // Switch theme
+            switchTheme(newTheme);
+            
+            // Update icon
+            icon.textContent = newTheme === 'solid' ? '☀️' : '🌙';
+        };
+        
+        window.switchTheme = function(theme) {
+            const root = document.documentElement;
+            const icon = document.querySelector('.theme-icon');
+            
+            // Set data-theme attribute
+            root.setAttribute('data-theme', theme);
+            
+            // Update icon if it exists
+            if (icon) {
+                icon.textContent = theme === 'solid' ? '☀️' : '🌙';
+            }
+            
+            // Save theme preference
+            localStorage.setItem('theme', theme);
+        };
+        
+        window.switchLinuxTab = function(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.linux-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.linux-tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            const selectedContent = document.getElementById(`linux-tab-${tabName}`);
+            const selectedButton = document.querySelector(`[onclick="switchLinuxTab('${tabName}')"]`);
+            
+            if (selectedContent) selectedContent.classList.add('active');
+            if (selectedButton) selectedButton.classList.add('active');
+        };
+        
+        window.switchInstitutionalTab = function(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.institutional-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.institutional-tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            const selectedContent = document.getElementById(`tab-${tabName}`);
+            const selectedButton = document.querySelector(`[onclick="switchInstitutionalTab('${tabName}')"]`);
+            
+            if (selectedContent) selectedContent.classList.add('active');
+            if (selectedButton) selectedButton.classList.add('active');
+        };
+        
+        window.performSearch = function() {
+            const searchInput = document.getElementById('search-input');
+            const searchSelect = document.getElementById('search-engine');
+            
+            if (!searchInput || !searchSelect) return;
+            
+            const query = searchInput.value.trim();
+            if (!query) return;
+            
+            const engines = {
+                google: 'https://www.google.com/search?q=',
+                bing: 'https://www.bing.com/search?q=',
+                duckduckgo: 'https://duckduckgo.com/?q=',
+                yahoo: 'https://search.yahoo.com/search?p=',
+                yandex: 'https://yandex.com/search/?text=',
+                baidu: 'https://www.baidu.com/s?wd='
+            };
+            
+            const selectedEngine = searchSelect.value;
+            const searchUrl = engines[selectedEngine] + encodeURIComponent(query);
+            window.open(searchUrl, '_blank');
+        };
+        
+        // Add enter key support for search
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && e.target.id === 'search-input') {
+                performSearch();
+            }
+        });
+    </script>
+</body>
+</html>

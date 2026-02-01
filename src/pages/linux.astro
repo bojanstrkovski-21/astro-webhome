@@ -1,0 +1,197 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const linuxDistros = [
+  { name: 'Arch Linux', url: 'https://archlinux.org', abbrev: 'AR' },
+  { name: 'ArcoLinux Info', url: 'https://arcolinux.info', abbrev: 'AI' },
+  { name: 'Fedora', url: 'https://getfedora.org', abbrev: 'FE' },
+  { name: 'Linux Mint', url: 'https://linuxmint.com', abbrev: 'LM' },
+  { name: 'Feren OS', url: 'https://ferenos.weebly.com', abbrev: 'FO' },
+  { name: 'KDE Neon', url: 'https://neon.kde.org', abbrev: 'KN' },
+  { name: 'Debian', url: 'https://debian.org', abbrev: 'DB' },
+  { name: 'Ubuntu', url: 'https://ubuntu.com', abbrev: 'UB' },
+  { name: 'Ubuntu Flavors', url: 'https://ubuntu.com/desktop/flavours', abbrev: 'UF' },
+  { name: 'Peppermint OS', url: 'https://peppermintos.com', abbrev: 'PO' },
+  { name: 'Gentoo Linux', url: 'https://gentoo.org', abbrev: 'GE' },
+  { name: 'Gentoo Linux Handbook', url: 'https://wiki.gentoo.org/wiki/Handbook:Main_Page', abbrev: 'GH' },
+  { name: 'Tuxedo OS', url: 'https://www.tuxedocomputers.com/en/TUXEDO-OS_1.tuxedo', abbrev: 'TX' },
+  { name: 'MX Linux', url: 'https://mxlinux.org', abbrev: 'MX' },
+  { name: 'Reborn OS', url: 'https://rebornos.org', abbrev: 'RB' },
+  { name: 'Endeavour OS', url: 'https://endeavouros.com', abbrev: 'EN' },
+  { name: 'CachyOS', url: 'https://cachyos.org', abbrev: 'CA' },
+  { name: 'OpenSUSE Linux', url: 'https://opensuse.org', abbrev: 'OS' },
+  { name: 'Pop! OS', url: 'https://pop.system76.com', abbrev: 'PO' },
+  { name: 'Void Linux', url: 'https://voidlinux.org', abbrev: 'VO' }
+];
+
+const linuxNews = [
+  { name: 'OMG! Ubuntu', url: 'https://omgubuntu.co.uk', abbrev: 'OU' },
+  { name: 'DebugPoint', url: 'https://debugpoint.com', abbrev: 'DP' },
+  { name: 'FOSS News', url: 'https://fossbytes.com', abbrev: 'FN' },
+  { name: 'How to Geek', url: 'https://howtogeek.com', abbrev: 'HG' },
+  { name: 'XDA-DEV', url: 'https://xda-developers.com', abbrev: 'XD' },
+  { name: 'Dedoimedo', url: 'https://dedoimedo.com', abbrev: 'DE' },
+  { name: 'TechHut', url: 'https://youtube.com/c/TechHut', abbrev: 'TH' },
+  { name: 'Linux Today', url: 'https://linuxtoday.com', abbrev: 'LT' },
+  { name: 'Linux Insider', url: 'https://linuxinsider.com', abbrev: 'LI' },
+  { name: 'Phoronix', url: 'https://phoronix.com', abbrev: 'PH' },
+  { name: 'ZDNet Linux', url: 'https://zdnet.com/topic/linux', abbrev: 'ZD' },
+  { name: 'Reddit Linux', url: 'https://reddit.com/r/linux', abbrev: 'RL' },
+  { name: 'Reddit Arch Linux', url: 'https://reddit.com/r/archlinux', abbrev: 'RA' },
+  { name: 'Reddit CommandLine', url: 'https://reddit.com/r/commandline', abbrev: 'RC' },
+  { name: 'Reddit Linux For Noobs', url: 'https://reddit.com/r/linux4noobs', abbrev: 'RN' },
+  { name: 'Reddit Linux Questions', url: 'https://reddit.com/r/linuxquestions', abbrev: 'RQ' },
+  { name: 'Reddit Linux Memes', url: 'https://reddit.com/r/linuxmemes', abbrev: 'RM' },
+  { name: 'Reddit Suckless', url: 'https://reddit.com/r/suckless', abbrev: 'RS' },
+  { name: 'Davatorium Rofi', url: 'https://github.com/davatorium/rofi', abbrev: 'RW' },
+  { name: 'Reddit HyprLand', url: 'https://reddit.com/r/hyprland', abbrev: 'RH' }
+];
+
+const linuxForumsRepos = [
+  { name: 'ArcoLinux.com', url: 'https://arcolinux.com', abbrev: 'AC' },
+  { name: 'ArcoLinux-D', url: 'https://github.com/arcolinux/arcolinuxd-iso', abbrev: 'AD' },
+  { name: 'ArcoLinux-B', url: 'https://github.com/arcolinux/arcolinuxb-iso', abbrev: 'AB' },
+  { name: 'Carli Linux', url: 'https://github.com/arcolinux/carli', abbrev: 'CL' },
+  { name: 'ALCI', url: 'https://github.com/arcolinux/alci-iso', abbrev: 'AL' },
+  { name: 'Ariser', url: 'https://github.com/arcolinux/ariser', abbrev: 'AS' },
+  { name: 'Xero Linux', url: 'https://xerolinux.xyz', abbrev: 'XL' },
+  { name: 'The Linux Cast', url: 'https://youtube.com/c/TheLinuxCast', abbrev: 'LC' },
+  { name: 'DistroTube', url: 'https://youtube.com/c/DistroTube', abbrev: 'DT' },
+  { name: 'Chris Titus Tech', url: 'https://youtube.com/c/ChrisTitusTech', abbrev: 'CT' },
+  { name: 'Rofi Lbonn Wayland', url: 'https://github.com/lbonn/rofi', abbrev: 'RW' },
+  { name: 'Suckless', url: 'https://suckless.org', abbrev: 'SL' },
+  { name: 'Hyprland', url: 'https://hyprland.org', abbrev: 'HL' },
+  { name: 'Wayfire', url: 'https://wayfire.org', abbrev: 'WF' },
+  { name: 'JaKooLit Hyprland', url: 'https://github.com/JaKooLit/Hyprland-Dots', abbrev: 'JK' },
+  { name: 'Prasanth Rangan Hyde Project', url: 'https://github.com/prasanthrangan/hyprdots', abbrev: 'PR' },
+  { name: 'Stephan Raabe ML4W Hyprland', url: 'https://github.com/mylinuxforwork/dotfiles', abbrev: 'SR' },
+  { name: 'Hypr Panel', url: 'https://github.com/Jas-SinghFSU/HyprPanel', abbrev: 'HP' },
+  { name: 'Vdoc', url: 'https://vdoc.pub', abbrev: 'VD' },
+  { name: 'PDF Drive', url: 'https://pdfdrive.com', abbrev: 'PD' },
+  { name: 'Lagout e-Book Library', url: 'http://lagout.org', abbrev: 'LE' }
+];
+
+const gitlabGithub = [
+  { name: 'BojanStrkovski-21 GitHub', url: 'https://github.com/bojanstrkovski-21', abbrev: 'BG' },
+  { name: 'BojanStrkovski-21 GitLab', url: 'https://gitlab.com/bojanstrkovski-21', abbrev: 'BL' },
+  { name: 'Arcolinux GitHub', url: 'https://github.com/arcolinux', abbrev: 'AG' },
+  { name: 'ErikDubois GitHub', url: 'https://github.com/erikdubois', abbrev: 'ED' },
+  { name: 'Arcolinux Arconetpro', url: 'https://github.com/arcolinux/arconet-pro', abbrev: 'AP' },
+  { name: 'Arcolinux-b GitHub', url: 'https://github.com/arcolinux/arcolinuxb-iso', abbrev: 'AB' },
+  { name: 'Arcolinux-d GitHub', url: 'https://github.com/arcolinux/arcolinuxd-iso', abbrev: 'AD' },
+  { name: 'Arcolinux GitLab', url: 'https://gitlab.com/arcolinux', abbrev: 'AL' },
+  { name: 'ChrisTitusTech GitHub', url: 'https://github.com/ChrisTitusTech', abbrev: 'CT' },
+  { name: 'The Linux Cast GitLab', url: 'https://gitlab.com/thelinuxcast', abbrev: 'TL' },
+  { name: 'DistroTube GitLab', url: 'https://gitlab.com/dwt1', abbrev: 'DG' },
+  { name: 'XeroLinux GitHub', url: 'https://github.com/xerolinux', abbrev: 'XG' },
+  { name: 'XeroLinux GitLab', url: 'https://gitlab.com/xerolinux', abbrev: 'XL' },
+  { name: 'Void Linux GitHub', url: 'https://github.com/void-linux', abbrev: 'VG' },
+  { name: 'Jake@Linux GitLab', url: 'https://gitlab.com/kskars', abbrev: 'JL' },
+  { name: 'Jake@Linux GitHub', url: 'https://github.com/JaKooLit', abbrev: 'JG' },
+  { name: 'LinuxDabbler', url: 'https://github.com/linuxdabbler', abbrev: 'LD' },
+  { name: 'JustAGuyLinux GitHub', url: 'https://github.com/justaguylinux', abbrev: 'JG' },
+  { name: 'JustAGuyLinux Codeberg', url: 'https://codeberg.org/justaguylinux', abbrev: 'JC' },
+  { name: 'Zaney', url: 'https://github.com/zaney', abbrev: 'ZA' },
+  { name: 'Stephan Raabe ML4W', url: 'https://github.com/mylinuxforwork', abbrev: 'SR' },
+  { name: 'Chaotic Repo', url: 'https://github.com/chaotic-aur', abbrev: 'CR' }
+];
+---
+
+<Layout title="Linux - Bookmark Dashboard">
+  <h1 class="page-header">Linux Quick-Links</h1>
+  
+  <div class="linux-tabs">
+    <div class="linux-tab-nav">
+      <button class="linux-tab-btn active" onclick="switchLinuxTab('distros')">
+        Linux Distros
+      </button>
+      <button class="linux-tab-btn" onclick="switchLinuxTab('news')">
+        Linux News
+      </button>
+      <button class="linux-tab-btn" onclick="switchLinuxTab('forums')">
+        Forums & Repos
+      </button>
+      <button class="linux-tab-btn" onclick="switchLinuxTab('github')">
+        GitHub/GitLab
+      </button>
+    </div>
+
+    <!-- Linux Distros Tab -->
+    <div id="linux-tab-distros" class="linux-tab-content active">
+      <div class="group">
+        <div class="links-grid institutional-grid" style="grid-template-columns: repeat(5, 1fr);">
+          {linuxDistros.map(distro => (
+            <a href={distro.url} target="_blank" class="link-item" data-abbrev={distro.abbrev}>
+              {distro.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Linux News Tab -->
+    <div id="linux-tab-news" class="linux-tab-content">
+      <div class="group">
+        <div class="links-grid institutional-grid" style="grid-template-columns: repeat(5, 1fr);">
+          {linuxNews.map(news => (
+            <a href={news.url} target="_blank" class="link-item" data-abbrev={news.abbrev}>
+              {news.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Linux Forums & Repos Tab -->
+    <div id="linux-tab-forums" class="linux-tab-content">
+      <div class="group">
+        <div class="links-grid institutional-grid" style="grid-template-columns: repeat(5, 1fr);">
+          {linuxForumsRepos.map(forum => (
+            <a href={forum.url} target="_blank" class="link-item" data-abbrev={forum.abbrev}>
+              {forum.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- GitHub/GitLab Tab -->
+    <div id="linux-tab-github" class="linux-tab-content">
+      <div class="group">
+        <div class="links-grid institutional-grid" style="grid-template-columns: repeat(5, 1fr);">
+          {gitlabGithub.map(repo => (
+            <a href={repo.url} target="_blank" class="link-item" data-abbrev={repo.abbrev}>
+              {repo.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  @media (max-width: 1200px) {
+    .institutional-grid {
+      grid-template-columns: repeat(4, 1fr) !important;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .institutional-grid {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .institutional-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .institutional-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

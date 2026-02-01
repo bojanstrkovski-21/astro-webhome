@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const eServisi = [
+  { name: 'ТАКИ-ДАСКАЛО-ХР', url: 'https://takidaskalohr.jongisweb.com.mk/login/', abbrev: 'TH' },
+  { name: 'ХРМИС', url: 'https://hrm.gov.mk/', abbrev: 'HR' },
+  { name: 'Е-ОБВРСКИ', url: 'https://e-trezor.finance.gov.mk/', abbrev: 'EO' },
+  { name: 'Е-ПДД', url: 'https://e-ujp.ujp.gov.mk/', abbrev: 'EP' },
+  { name: 'Е-ДАНОЦИ', url: 'https://etax-fl.ujp.gov.mk/', abbrev: 'ED' },
+  { name: 'ЦРМ-ПОРТАЛ', url: 'https://e-submit.crm.com.mk/SSO/login.aspx?ReturnUrl=https://crm.com.mk/', abbrev: 'CR' },
+  { name: 'С-ПЕО', url: 'https://peo.finance.gov.mk/', abbrev: 'ES' },
+  { name: 'ЕСЈН', url: 'https://www.e-nabavki.gov.mk/', abbrev: 'EJ' },
+  { name: 'Е-СТАТ', url: 'https://estat.stat.gov.mk/', abbrev: 'ST' },
+  { name: 'ЕВН-ХОМЕ', url: 'https://online.evn.mk/', abbrev: 'EV' },
+  { name: 'ЕСАРУ', url: 'http://emis.mon.gov.mk/', abbrev: 'EA' },
+  { name: 'Е-ДНЕВНИК', url: 'https://ednevnik.edu.mk/', abbrev: 'DN' },
+  { name: 'ФЗО-МОЕ-ОСИГУРУВАЊЕ', url: 'https://moeosiguruvanje.fzo.org.mk/', abbrev: 'FZ' },
+  { name: 'Е-УСЛУГИ-МК', url: 'https://uslugi.gov.mk/', abbrev: 'EU' },
+  { name: 'ИСОС-Најва', url: 'https://smetkovoditel.isos.com.mk/login?returnUrl=%2F', abbrev: 'IN' },
+  { name: 'КАЛКУЛАТОР-ПАЛТА-2026', url: 'https://bojanstrkovski-21.github.io/salary-calculator/', abbrev: 'KP' },
+  { name: 'КАЛКУЛАТОР-РАБОТНИ-ДЕНОВИ', url: 'https://www.timeanddate.com/date/duration.html', abbrev: 'WC' }
+];
+---
+
+<Layout title="E-servisi - Bookmark Dashboard">
+  <h1 class="page-header">Е-СЕРВИСИ</h1>
+  
+  <div class="button-grid" style="grid-template-columns: repeat(5, 1fr);">
+    {eServisi.map(service => (
+      <a href={service.url} target="_blank" class="service-button" data-abbrev={service.abbrev}>
+        {service.name}
+      </a>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  @media (max-width: 1200px) {
+    .button-grid {
+      grid-template-columns: repeat(4, 1fr) !important;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .button-grid {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .button-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .button-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
