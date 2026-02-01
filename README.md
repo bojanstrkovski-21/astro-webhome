@@ -107,4 +107,7 @@ The design uses CSS custom properties (variables) defined in the main layout, ma
 
 ---
 
+## For pushing on github
+git add all && git commit -m "upd Readme.md" && git push origin main
+
 Built with ❤️ using Astro
