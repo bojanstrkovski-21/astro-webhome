@@ -17,7 +17,7 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
     <script is:inline>
         // Set theme instantly via CSS custom properties
         (function() {
-            const savedTheme = localStorage.getItem('theme') || 'solid';
+            const savedTheme = localStorage.getItem('theme') || 'transparent';
             const root = document.documentElement;
             root.setAttribute('data-theme', savedTheme);
         })();
