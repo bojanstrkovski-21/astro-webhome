@@ -2,6 +2,10 @@
 
 A comprehensive bookmark dashboard built with Astro featuring four main sections:
 
+## Screenshot
+
+![Home Page](public/screenshot.png)
+
 ## Features
 
 ### 🏠 Home Page
@@ -26,10 +30,6 @@ Four comprehensive sections:
 - **Linux Distros**: Popular distributions (20 links)
 - **Linux News**: News sites and communities (20 links)
 - **Linux Forums & Repos**: Forums, repositories, and resources (21 links)
-
-## Screenshot
-
-![Home Page](public/screenshot.png)
 
 ## Technology Stack
 
