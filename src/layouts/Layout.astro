@@ -317,22 +317,36 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
+            box-shadow: none;
+            -webkit-box-shadow: none;
         }
         
         .search-engine-select:focus {
             border-color: var(--text-primary);
+            outline: none;
+            box-shadow: none;
+            -webkit-box-shadow: none;
         }
         
         .search-engine-select option {
             background: var(--bg0);
             color: var(--text-secondary);
             padding: 8px;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            text-shadow: none;
+            background-clip: padding-box;
         }
         
         .search-engine-select option:hover,
         .search-engine-select option:checked {
             background: var(--bg2);
             color: var(--text-primary);
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            border: none;
         }
         
         .search-btn {
@@ -890,6 +904,7 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
                 google: 'https://www.google.com/search?q=',
                 bing: 'https://www.bing.com/search?q=',
                 duckduckgo: 'https://duckduckgo.com/?q=',
+                brave: 'https://search.brave.com/search?q=',
                 yahoo: 'https://search.yahoo.com/search?p=',
                 yandex: 'https://yandex.com/search/?text=',
                 baidu: 'https://www.baidu.com/s?wd='
