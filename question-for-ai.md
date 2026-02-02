@@ -23,3 +23,4 @@ group-1 header "linux-distros" and under it links arranged in 5 columns by 5 row
 group-2 header "linux-news" and under it links arranged in 5 columns by 4 rows with possibility for changing for OMG-Ubuntu, DebugPoint, Foss News, How to Geek, XDA-DEV, Dedoimedo, TechHut, Linux Today, Linux Insider, Phoronix, Zdnet-Linux, Reddit-Linux, Reddit-Archlinux, Reddit-CommandLine, Reddit-Linux For Noobs, Reddit-Linuxquestions, Reddit-Linuxmemes, Reddit-Suckless, Rofi-lbonn-wayland, Reddit-HyprLand
 group-3 header "linux-forums-repos" and under it links arranged in 5 columns by 4 rows with possibility for changing for Arco-Linux-com, ArcoLinux-d, ArcoLinux-b, Carli-Linux, ALCI, Ariser, Xero-Linux, The-Linux-Cast, Distro-Tube, ChrisTitusTech, Rofi-Lbonn-Wayland, Suckless, Hyprland, Wayfire, JaKoolit-Hyprland, Prasanth_Rangan_Hyde-project, Stephan Raabe - ML4W-hyprland, Hypr Panel, Vdoc, Pdf-Drive, Lagout-e-Book-Library
 
+asdasdasdas
