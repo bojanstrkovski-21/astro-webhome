@@ -39,7 +39,8 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
             --green: #a7c080;
             --aqua: #83c092;
             --blue: #7fbbb3;
-            --dark-blue: #3a515d
+            --dark-blue: #3a515d;
+            --dark-purple:
             --purple: #d699b6;
             --grey0: #7a8478;
             --grey1: #859289;
@@ -83,26 +84,41 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
         }
         
         html {
+            min-height: 100vh;
+        }
+        
+        [data-theme="transparent"] html {
             background: linear-gradient(135deg, rgba(35, 42, 46, 0.9) 0%, rgba(45, 53, 59, 0.9) 50%, rgba(52, 63, 68, 0.9) 100%), url('https://images.unsplash.com/photo-1511497584788-876760111969?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') #2d353b;
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
-            min-height: 100vh;
+        }
+
+        [data-theme="solid"] html {
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            background-size: cover;
+            background-attachment: fixed;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-image, linear-gradient(135deg, var(--dark-blue) 50%, var(--bg0) 100%));
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
+            background: transparent;
             color: var(--text-secondary);
             min-height: 100vh;
             overflow-x: auto;
         }
         
+        [data-theme="transparent"] body {
+            background: var(--bg-image, linear-gradient(135deg, var(--dark-blue) 50%, var(--bg0) 100%));
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        
         [data-theme="solid"] body {
             background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            background-size: cover;
+            background-attachment: fixed;
         }
 
         .container {
@@ -194,6 +210,30 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
             border: 2px solid var(--green);
             border-radius: 6px;
             box-shadow: 0 4px 12px rgba(167, 192, 128, 0.4);
+        }
+        
+        .hamburger-menu {
+            display: none;
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hamburger-menu:hover {
+            border-color: var(--text-primary);
+        }
+        
+        .nav-right {
+            display: flex;
+            gap: 10px;
+            align-items: center;
         }
         
         .theme-switcher {
@@ -583,13 +623,61 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+                padding: 12px 15px;
+                gap: 12px;
+            }
+            
+            .nav-left {
+                flex: 1;
+                min-width: 0;
+            }
+            
+            .nav-logo {
+                height: 32px;
+            }
+            
+            .site-name {
+                font-size: 0.95rem;
+            }
+            
+            .nav-right {
+                flex: 0 0 auto;
+                gap: 8px;
+            }
+            
+            .hamburger-menu {
+                display: flex;
+            }
+            
             .nav-tabs {
-                justify-content: center;
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 8px;
+                order: 3;
+            }
+            
+            .nav-tabs.open {
+                display: flex;
             }
             
             .nav-tab {
-                padding: 10px 16px;
-                font-size: 14px;
+                width: 100%;
+                padding: 12px 20px;
+                font-size: 13px;
+                text-align: center;
+                border-radius: 6px !important;
+            }
+            
+            .nav-tab:first-child,
+            .nav-tab:last-child {
+                border-radius: 6px !important;
             }
             
             .groups-container {
@@ -605,7 +693,17 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
             }
             
             .page-header {
-                font-size: 2rem;
+                font-size: 1.5rem;
+            }
+            
+            .institutional-tab-btn {
+                font-size: 13px;
+                padding: 8px 10px;
+            }
+            
+            .linux-tab-btn {
+                font-size: 13px;
+                padding: 8px 10px;
             }
         }
     </style>
@@ -618,16 +716,21 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
                     <img src={`${import.meta.env.BASE_URL}/logo-boki.svg`} alt="Site Logo" class="nav-logo" />
                     <span class="site-name">Bojan's HomePage 2026</span>
                 </div>
+                <div class="nav-right">
+                    <button class="hamburger-menu" onclick="toggleMenu()" title="Toggle Menu">
+                        <span class="hamburger-icon">☰</span>
+                    </button>
+                    <div class="theme-switcher">
+                        <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme">
+                            <span class="theme-icon">☀️</span>
+                        </button>
+                    </div>
+                </div>
                 <div class="nav-tabs">
                     <a href={`${import.meta.env.BASE_URL}/`} class="nav-tab">Home</a>
                     <a href={`${import.meta.env.BASE_URL}/e-servisi/`} class="nav-tab">E-servisi</a>
                     <a href={`${import.meta.env.BASE_URL}/institucii/`} class="nav-tab">Institucii</a>
                     <a href={`${import.meta.env.BASE_URL}/linux/`} class="nav-tab">Linux</a>
-                </div>
-                <div class="theme-switcher">
-                    <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme">
-                        <span class="theme-icon">☀️</span>
-                    </button>
                 </div>
             </div>
         </nav>
@@ -658,6 +761,13 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
         });
 
         // Make functions globally accessible
+        window.toggleMenu = function() {
+            const navTabs = document.querySelector('.nav-tabs');
+            if (navTabs) {
+                navTabs.classList.toggle('open');
+            }
+        };
+        
         window.toggleTheme = function() {
             const root = document.documentElement;
             const icon = document.querySelector('.theme-icon');
