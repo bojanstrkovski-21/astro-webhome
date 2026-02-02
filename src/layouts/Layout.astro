@@ -231,7 +231,7 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
         }
         
         .nav-right {
-            display: flex;
+            display: none;
             gap: 10px;
             align-items: center;
         }
@@ -314,6 +314,9 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
             cursor: pointer;
             min-width: 120px;
             outline: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
         }
         
         .search-engine-select:focus {
@@ -321,9 +324,15 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
         }
         
         .search-engine-select option {
-            background: var(--primary-bg);
+            background: var(--bg0);
             color: var(--text-secondary);
             padding: 8px;
+        }
+        
+        .search-engine-select option:hover,
+        .search-engine-select option:checked {
+            background: var(--bg2);
+            color: var(--text-primary);
         }
         
         .search-btn {
@@ -658,12 +667,17 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
             }
             
             .nav-right {
+                display: flex;
                 flex: 0 0 auto;
                 gap: 8px;
             }
             
             .hamburger-menu {
                 display: flex;
+            }
+            
+            .theme-switcher {
+                display: none;
             }
             
             .nav-tabs {
@@ -741,21 +755,24 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
                     <img src={`${import.meta.env.BASE_URL}/logo-boki.svg`} alt="Site Logo" class="nav-logo" />
                     <span class="site-name">Bojan's HomePage 2026</span>
                 </div>
-                <div class="nav-right">
-                    <button class="hamburger-menu" onclick="toggleMenu()" title="Toggle Menu">
-                        <span class="hamburger-icon">☰</span>
-                    </button>
-                    <div class="theme-switcher">
-                        <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme">
-                            <span class="theme-icon">☀️</span>
-                        </button>
-                    </div>
-                </div>
                 <div class="nav-tabs">
                     <a href={`${import.meta.env.BASE_URL}/`} class="nav-tab">Home</a>
                     <a href={`${import.meta.env.BASE_URL}/e-servisi/`} class="nav-tab">E-servisi</a>
                     <a href={`${import.meta.env.BASE_URL}/institucii/`} class="nav-tab">Institucii</a>
                     <a href={`${import.meta.env.BASE_URL}/linux/`} class="nav-tab">Linux</a>
+                </div>
+                <div class="theme-switcher">
+                    <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme">
+                        <span class="theme-icon">☀️</span>
+                    </button>
+                </div>
+                <div class="nav-right">
+                    <button class="hamburger-menu" onclick="toggleMenu()" title="Toggle Menu">
+                        <span class="hamburger-icon">☰</span>
+                    </button>
+                    <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme">
+                        <span class="theme-icon">☀️</span>
+                    </button>
                 </div>
             </div>
         </nav>
