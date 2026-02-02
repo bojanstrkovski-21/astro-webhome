@@ -313,6 +313,17 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
             font-size: 14px;
             cursor: pointer;
             min-width: 120px;
+            outline: none;
+        }
+        
+        .search-engine-select:focus {
+            border-color: var(--text-primary);
+        }
+        
+        .search-engine-select option {
+            background: var(--primary-bg);
+            color: var(--text-secondary);
+            padding: 8px;
         }
         
         .search-btn {
@@ -704,6 +715,20 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
             .linux-tab-btn {
                 font-size: 13px;
                 padding: 8px 10px;
+            }
+            
+            .search-container {
+                padding: 15px;
+            }
+            
+            .search-box {
+                gap: 6px;
+            }
+            
+            .search-engine-select {
+                min-width: 100px;
+                padding: 10px 8px;
+                font-size: 13px;
             }
         }
     </style>
