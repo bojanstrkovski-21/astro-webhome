@@ -795,9 +795,9 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
         </main>
     </div>
 
-    <script>
+    <script is:inline>
         // Set active tab based on current page
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', function() {
             const currentPath = window.location.pathname;
             const tabs = document.querySelectorAll('.nav-tab');
             
@@ -831,10 +831,12 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
             const newTheme = currentTheme === 'solid' ? 'transparent' : 'solid';
             
             // Switch theme
-            switchTheme(newTheme);
+            window.switchTheme(newTheme);
             
             // Update icon
-            icon.textContent = newTheme === 'solid' ? '☀️' : '🌙';
+            if (icon) {
+                icon.textContent = newTheme === 'solid' ? '☀️' : '🌙';
+            }
         };
         
         window.switchTheme = function(theme) {
@@ -892,8 +894,8 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
         };
         
         window.performSearch = function() {
-            const searchInput = document.getElementById('search-input');
-            const searchSelect = document.getElementById('search-engine');
+            var searchInput = document.getElementById('search-input');
+            var searchSelect = document.getElementById('search-engine');
             
             if (!searchInput || !searchSelect) return;
             
@@ -916,9 +918,9 @@ const { title = 'Bookmark Dashboard' } = Astro.props;
         };
         
         // Add enter key support for search
-        document.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && e.target.id === 'search-input') {
-                performSearch();
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && e.target && e.target.id === 'search-input') {
+                window.performSearch();
             }
         });
     </script>
