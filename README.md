@@ -30,6 +30,7 @@ Four comprehensive sections:
 - **Linux Distros**: Popular distributions (20 links)
 - **Linux News**: News sites and communities (20 links)
 - **Linux Forums & Repos**: Forums, repositories, and resources (21 links)
+- **GitHub/GitLab**: Developer repositories and resources (22 links)
 
 ## Technology Stack
 
@@ -38,16 +39,21 @@ Four comprehensive sections:
 - **TypeScript**: Type-safe JavaScript
 - **Responsive Design**: Mobile-first approach
 
-## Color Scheme
+## Themes
 
-Custom dark theme with:
-- Primary Background: `#1a1a2e`
-- Secondary Background: `#16213e` 
-- Accent Background: `#0f3460`
-- Card Background: `#252550`
-- Primary Text: `#e94560` (bright red-pink)
-- Secondary Text: `#ffffff`
-- Muted Text: `#b8b8b8`
+### Everforest Color Palette
+Based on the Everforest Medium Dark theme with warm, natural colors:
+- **Background Colors**: `#232a2e` to `#56635f` (7 shades)
+- **Text Colors**: `#d3c6aa` (primary foreground)
+- **Accent Colors**: Red, Orange, Yellow, Green, Aqua, Blue, Purple
+- **Primary Green**: `#a7c080`
+- **Dark Blue**: `#3a515d`
+
+### Two Theme Options
+1. **Solid Theme**: Clean gradient background using dark blue and dark gray
+2. **Transparent Theme**: Semi-transparent elements with wallpaper background
+
+**Theme Switcher**: Toggle button in navigation bar to switch between themes. Theme preference is saved in localStorage.
 
 ## Getting Started
 
@@ -86,14 +92,16 @@ public/
 └── favicon.svg              # Custom favicon
 ```
 
-## Features
+## Key Features
 
+- **Theme Switcher**: Toggle between Solid and Transparent themes with localStorage persistence
 - **Fully Responsive**: Works on desktop, tablet, and mobile devices
-- **Search Integration**: Multi-engine search functionality
-- **Modern Design**: Clean, professional dark theme
-- **Fast Loading**: Optimized static site generation
+- **Search Integration**: Multi-engine search functionality (7 search engines)
+- **Modern Design**: Everforest-inspired color palette with warm, natural tones
+- **Fast Loading**: Optimized static site generation with Astro
 - **Easy Maintenance**: Well-organized code structure
 - **Accessible**: Semantic HTML and proper contrast ratios
+- **Abbreviation Tooltips**: Quick reference badges on hover for all links
 
 ## Customization
 
@@ -107,7 +115,19 @@ The design uses CSS custom properties (variables) defined in the main layout, ma
 
 ---
 
-## For pushing on github
-``` git add all && git commit -m "upd Readme.md" && git push origin main ```
+## Deployment
+
+### Manual Git Push
+```bash
+git add . && git commit -m "update" && git push origin main
+```
+
+### Using PowerShell Script
+```powershell
+.\git-push.ps1
+```
+
+### Automatic Deployment
+Configured with GitHub Actions - pushes to `main` branch automatically trigger deployment to GitHub Pages.
 
 Built with ❤️ using Astro
