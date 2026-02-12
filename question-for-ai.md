@@ -24,3 +24,31 @@ group-2 header "linux-news" and under it links arranged in 5 columns by 4 rows w
 group-3 header "linux-forums-repos" and under it links arranged in 5 columns by 4 rows with possibility for changing for Arco-Linux-com, ArcoLinux-d, ArcoLinux-b, Carli-Linux, ALCI, Ariser, Xero-Linux, The-Linux-Cast, Distro-Tube, ChrisTitusTech, Rofi-Lbonn-Wayland, Suckless, Hyprland, Wayfire, JaKoolit-Hyprland, Prasanth_Rangan_Hyde-project, Stephan Raabe - ML4W-hyprland, Hypr Panel, Vdoc, Pdf-Drive, Lagout-e-Book-Library
 
 asdasdasdas
+
+Single letters not heavily used:
+
+BA, BC, BD, BE, BF, BH, BI, BK, BM, BN, BO, BP, BQ, BS, BT, BU, BV, BW, BX, BY, BZ
+CC, CD, CG, CH, CI, CJ, CM, CN, CO, CP, CQ, CU, CV, CW, CX, CY, CZ
+DA, DC, DD, DE (used), DF, DH, DJ, DK, DL, DO, DQ, DS, DU, DV, DW, DX, DY
+EB, EC, EE, EF, EG, EH, EI, EK, EL, EM (used), EQ, EW, EX, EY, EZ
+FA, FB, FC, FD, FF, FG, FH, FI, FJ, FK, FL, FM, FQ, FR, FS, FT, FU, FV, FW, FX, FY
+GA, GB, GC, GF, GG, GI, GJ, GK, GL, GM (used), GN, GO, GP, GQ, GR, GS, GT, GU, GV, GW, GX, GY, GZ
+HA, HC, HD, HE, HF, HH, HI, HJ, HK, HM, HN, HO, HQ, HR (used), HS, HT, HU, HV, HW, HX, HY, HZ
+IA, IB, IC, ID, IE, IF, IG, IH, II, IJ, IK, IL, IM, IO, IP, IQ, IR, IT, IU, IV, IW, IX, IY, IZ
+JB, JC (used), JD, JE, JF, JH, JI, JJ, JM, JN, JO, JP, JQ, JR, JS, JT, JU, JV, JW, JX, JY, JZ
+KC, KD, KE, KF, KG, KH, KI, KJ, KK, KL, KM, KO, KQ, KR, KS, KU, KV, KW, KX, KY, KZ
+LA, LB, LC (used), LD (used), LE (used), LF, LG, LH, LJ, LK, LL, LN, LO, LP, LQ, LR, LU, LV, LW, LX, LY, LZ
+MA, MB (used), MC, MD, MG, MH, MI, MJ, ML, MM, MQ, MR, MS (used), MU, MW, MX (used), MY
+NA, NC, ND, NE, NF, NG, NH, NI, NJ, NK, NM, NN, NO, NP, NQ, NR, NS, NT, NU, NV, NW, NX, NY, NZ
+OA, OC, OE, OF, OG, OH, OI, OJ, OK, OM, ON (used), OO, OP, OQ, OR, OS (used), OT, OV, OW, OX, OY, OZ
+PB, PE, PF, PG, PI, PJ, PK, PL, PN, PP, PQ, PS, PT, PU, PV, PW, PX, PY, PZ
+QA-QZ (all Q combinations)
+RE, RF, RG, RI, RJ, RK, RO, RP, RR, RT, RU, RV, RX, RY, RZ
+SA, SC, SD, SE, SG, SH, SI, SJ, SK, SN, SO, SQ, ST (used), SU, SV (used), SW, SX, SY, SZ
+TA, TB, TC, TE, TF, TG, TI, TJ, TK, TN, TO, TP, TQ, TR, TS, TU, TV, TW, TY, TZ
+UC, UD, UE, UF (used), UG, UH, UI, UK, UL, UM, UN, UO, UP, UQ, UR, US, UT, UU, UV, UW, UX, UY, UZ
+VA, VB, VC, VE, VF, VH, VI, VJ, VK, VL, VM, VN, VP, VQ, VR, VS, VT, VU, VV, VW, VX, VY, VZ
+WA, WB, WD, WF (used), WG, WH, WI, WJ, WK, WL, WN, WO, WP, WQ, WR, WS, WU, WV, WW, WX, WY, WZ
+XA, XB, XC, XE, XF, XH, XI, XJ, XK, XM, XN, XO, XP, XQ, XR, XS, XT, XU, XV, XW, XX, XY, XZ
+YA, YB, YC, YD, YE, YF, YG, YH, YI, YJ, YK, YL, YN, YO, YP, YQ, YS, YU, YV, YW, YX, YY, YZ
+ZB, ZC, ZE, ZF, ZG, ZH, ZI, ZJ, ZK, ZL, ZM, ZN, ZO, ZP, ZQ, ZR, ZT, ZU, ZV, ZW, ZX, ZY, ZZ
