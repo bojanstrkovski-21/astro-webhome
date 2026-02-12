@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://bojanstrkovski-21.github.io',
-  base: '/astro-webhome',
+  site: 'https://bokiwebhome.link',
+  base: '/',
   output: 'static',
   build: {
     format: 'directory'
