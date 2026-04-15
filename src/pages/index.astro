@@ -27,6 +27,17 @@ const homeLinks = {
     { name: 'Cloudflare', url: 'https://cloudflare.com', abbrev: 'CF' },
     { name: 'MKHost', url: 'https://mkhost.mk', abbrev: 'MK' },
     { name: 'Netlify', url: 'https://netlify.com', abbrev: 'NL' }
+  ],
+  webApps: [
+    { name: 'Google Docs', url: 'https://docs.google.com/', abbrev: 'GD' },
+    { name: 'DrawIo', url: 'https://app.diagrams.net', abbrev: 'DI' },
+    { name: 'Excalidraw', url: 'https://excalidraw.com/', abbrev: 'EX' },
+    { name: 'Photopea', url: 'https://www.photopea.com/', abbrev: 'PP' },
+    { name: 'iLovePDF', url: 'https://www.ilovepdf.com/', abbrev: 'LP' },
+    { name: 'Squoosh', url: 'https://squoosh.app/', abbrev: 'SQ' },
+    { name: 'Figma', url: 'https://www.figma.com/', abbrev: 'FG' },
+    { name: 'Canva', url: 'https://www.canva.com/', abbrev: 'CV' },
+    { name: 'SoundCloud', url: 'https://soundcloud.com', abbrev: 'SC' }
   ]
 };
 ---
@@ -82,6 +93,17 @@ const homeLinks = {
       <h2 class="group-header">Клауд простор</h2>
       <div class="links-grid">
         {homeLinks.klaudProstor.map(link => (
+          <a href={link.url} target="_blank" class="link-item" data-abbrev={link.abbrev}>
+            {link.name}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="group">
+      <h2 class="group-header">Web Apps</h2>
+      <div class="links-grid">
+        {homeLinks.webApps.map(link => (
           <a href={link.url} target="_blank" class="link-item" data-abbrev={link.abbrev}>
             {link.name}
           </a>
