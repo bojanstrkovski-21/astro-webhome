@@ -62,7 +62,7 @@ const homeLinks = {
       </select>
     </div>
     <button onclick="performSearch()" class="search-btn">
-      Search
+      <span><i>Search</i></span>
     </button>
   </div>
 
@@ -72,7 +72,7 @@ const homeLinks = {
       <div class="links-grid">
         {homeLinks.elektronskaPosta.map(link => (
           <a href={link.url} target="_blank" class="link-item" data-abbrev={link.abbrev}>
-            {link.name}
+            <span><i>{link.name}</i></span>
           </a>
         ))}
       </div>
@@ -83,7 +83,7 @@ const homeLinks = {
       <div class="links-grid">
         {homeLinks.info.map(link => (
           <a href={link.url} target="_blank" class="link-item" data-abbrev={link.abbrev}>
-            {link.name}
+            <span><i>{link.name}</i></span>
           </a>
         ))}
       </div>
@@ -94,7 +94,7 @@ const homeLinks = {
       <div class="links-grid">
         {homeLinks.klaudProstor.map(link => (
           <a href={link.url} target="_blank" class="link-item" data-abbrev={link.abbrev}>
-            {link.name}
+            <span><i>{link.name}</i></span>
           </a>
         ))}
       </div>
@@ -105,7 +105,7 @@ const homeLinks = {
       <div class="links-grid">
         {homeLinks.webApps.map(link => (
           <a href={link.url} target="_blank" class="link-item" data-abbrev={link.abbrev}>
-            {link.name}
+            <span><i>{link.name}</i></span>
           </a>
         ))}
       </div>

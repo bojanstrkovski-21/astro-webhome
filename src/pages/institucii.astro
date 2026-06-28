@@ -100,7 +100,7 @@ const banki = [
         <div class="links-grid institutional-grid" style="grid-template-columns: repeat(5, 1fr);">
           {ministerstva.map(ministry => (
             <a href={ministry.url} target="_blank" class="link-item" data-abbrev={ministry.abbrev}>
-              {ministry.name}
+              <span><i>{ministry.name}</i></span>
             </a>
           ))}
         </div>
@@ -113,7 +113,7 @@ const banki = [
         <div class="links-grid institutional-grid" style="grid-template-columns: repeat(5, 1fr);">
           {institucii.map(institution => (
             <a href={institution.url} target="_blank" class="link-item" data-abbrev={institution.abbrev}>
-              {institution.name}
+              <span><i>{institution.name}</i></span>
             </a>
           ))}
         </div>
@@ -126,7 +126,7 @@ const banki = [
         <div class="links-grid institutional-grid" style="grid-template-columns: repeat(5, 1fr);">
           {banki.map(bank => (
             <a href={bank.url} target="_blank" class="link-item" data-abbrev={bank.abbrev}>
-              {bank.name}
+              <span><i>{bank.name}</i></span>
             </a>
           ))}
         </div>

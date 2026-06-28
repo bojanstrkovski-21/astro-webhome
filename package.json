@@ -13,6 +13,7 @@
     "node": ">=24.0.0"
   },
   "dependencies": {
+    "@fontsource/inter": "^5.2.8",
     "astro": "^7.0.3"
   }
 }

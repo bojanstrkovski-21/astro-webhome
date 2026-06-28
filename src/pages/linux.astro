@@ -135,7 +135,7 @@ const gitlabGithub = [
         <div class="links-grid institutional-grid" style="grid-template-columns: repeat(5, 1fr);">
           {linuxDistros.map(distro => (
             <a href={distro.url} target="_blank" class="link-item" data-abbrev={distro.abbrev}>
-              {distro.name}
+              <span><i>{distro.name}</i></span>
             </a>
           ))}
         </div>
@@ -148,7 +148,7 @@ const gitlabGithub = [
         <div class="links-grid institutional-grid" style="grid-template-columns: repeat(5, 1fr);">
           {linuxNews.map(news => (
             <a href={news.url} target="_blank" class="link-item" data-abbrev={news.abbrev}>
-              {news.name}
+              <span><i>{news.name}</i></span>
             </a>
           ))}
         </div>
@@ -161,7 +161,7 @@ const gitlabGithub = [
         <div class="links-grid institutional-grid" style="grid-template-columns: repeat(5, 1fr);">
           {linuxForumsRepos.map(forum => (
             <a href={forum.url} target="_blank" class="link-item" data-abbrev={forum.abbrev}>
-              {forum.name}
+              <span><i>{forum.name}</i></span>
             </a>
           ))}
         </div>
@@ -174,7 +174,7 @@ const gitlabGithub = [
         <div class="links-grid institutional-grid" style="grid-template-columns: repeat(5, 1fr);">
           {gitlabGithub.map(repo => (
             <a href={repo.url} target="_blank" class="link-item" data-abbrev={repo.abbrev}>
-              {repo.name}
+              <span><i>{repo.name}</i></span>
             </a>
           ))}
         </div>

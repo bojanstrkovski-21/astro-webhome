@@ -31,7 +31,7 @@ const eServisi = [
   <div class="button-grid" style="grid-template-columns: repeat(5, 1fr);">
     {eServisi.map(service => (
       <a href={service.url} target="_blank" class="service-button" data-abbrev={service.abbrev}>
-        {service.name}
+        <span><i>{service.name}</i></span>
       </a>
     ))}
   </div>
