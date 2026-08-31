@@ -1,5 +1,7 @@
-# Git Push Script with GitHub Authentication
-# This script helps you stage, commit, and push changes to GitHub
+# Git Push Script
+# Stages, commits, and pushes changes to GitHub using the credential manager
+# already configured for this repo (git config credential.helper) - no manual
+# username/token entry needed.
 
 Write-Host "=== Git Push Helper ===" -ForegroundColor Green
 Write-Host ""
@@ -10,16 +12,6 @@ if (-not (Test-Path ".git")) {
     exit 1
 }
 
-# GitHub Authentication
-Write-Host "GitHub Authentication" -ForegroundColor Cyan
-Write-Host "Enter your GitHub credentials:" -ForegroundColor Yellow
-$username = Read-Host "GitHub Username"
-$token = Read-Host "GitHub Personal Access Token (PAT)" -AsSecureString
-
-# Convert secure string to plain text for git
-$BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($token)
-$plainToken = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
-Write-Host ""
 Write-Host "=== Staging Changes ===" -ForegroundColor Cyan
 
 # Stage all changes
@@ -62,21 +54,12 @@ Write-Host ""
 Write-Host "=== Pushing to GitHub ===" -ForegroundColor Cyan
 Write-Host "Pushing to main branch..." -ForegroundColor Yellow
 
-# Get the remote URL
-$remoteUrl = git config --get remote.origin.url
-
-# If it's HTTPS, inject credentials
-if ($remoteUrl -like "https://*") {
-    $urlWithAuth = $remoteUrl -replace "https://", "https://$username`:$plainToken@"
-    git push $urlWithAuth main
-} else {
-    git push origin main
-}
+git push origin main
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Error: Failed to push changes!" -ForegroundColor Red
     Write-Host ""
-    Write-Host "You may need to authenticate manually or check your credentials." -ForegroundColor Yellow
+    Write-Host "Run 'git push origin main' manually to see the full error." -ForegroundColor Yellow
     exit 1
 }
 
@@ -84,7 +67,3 @@ Write-Host ""
 Write-Host "=== Success! ===" -ForegroundColor Green
 Write-Host "Changes have been pushed to GitHub successfully!" -ForegroundColor Green
 Write-Host ""
-
-# Clear credentials from memory
-$plainToken = $null
-[System.GC]::Collect()
