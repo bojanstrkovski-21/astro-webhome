@@ -21,7 +21,7 @@ Raw Everforest medium-dark palette vars (`--bg-dim`, `--bg0`..`--bg5`, `--fg`, `
 
 Two themes toggled via `data-theme` attribute on `<html>`, persisted to `localStorage['theme']`:
 
-- `solid` — solid-bg.jpg background, opaque (non-blurred) cards (sun icon)
+- `solid` — solid-bg.jpg background, cards at 90% opacity (10% transparent) with no blur/backdrop-filter (sun icon)
 - `transparent` — wallpaper.jpg background, translucent/blurred cards (moon icon)
 
 Toggle with `window.switchTheme('solid'|'transparent')` (exposed globally by the inline script in Layout.astro).
@@ -43,9 +43,13 @@ The nav bar and whatever sits directly below it (the search row, or the next fra
 
 The search bar itself is *inside* the nav element (`.nav-search-row`, a second row under the logo/tabs row) — it is not a separate box that needs merging with the header; that structural move already happened.
 
+None of the pages have an on-page `<h1>` title anymore (e-servisi/institucii/linux had one, removed) — the frame that used to sit below it (`.button-grid`, `.institutional-tabs`, `.linux-tabs`) is now the element directly under the nav and carries the squared-top-corner treatment itself. `.page-header` no longer exists in Layout.astro — don't reintroduce it without also re-adding a template usage.
+
+On Institucii/Linux, the tab nav and its content grid are one merged frame (not two) — `.institutional-tabs`/`.linux-tabs` is the card, `.institutional-tab-nav`/`.linux-tab-nav` is its top strip (bottom border as the divider), and the tab buttons are styled to look like the navbar's `.nav-tab` (transparent, green underline on hover, green bordered box when active) rather than solid pill buttons. The `.group` div still wrapping each tab's content grid gets its frame stripped via `.institutional-tab-content .group` / `.linux-tab-content .group` (same pattern as `.groups-container .group` on home) so it isn't double-framed inside the merged tabs card.
+
 ### Keycap buttons
 
-`.link-item` and `.service-button` (and `.search-btn`, on the older unscoped base style) share a rounded-keycap visual style: the clickable element wraps `<span><i>Label</i></span>` — `span` is the visible surface, `i` is the text. Keep this wrapper; earlier experiments collapsing it to plain text content broke the layering.
+`.link-item`, `.service-button`, and `.search-btn` share a rounded-keycap visual style: the clickable element wraps `<span><i>Label</i></span>` — `span` is the visible surface, `i` is the text. Keep this wrapper; earlier experiments collapsing it to plain text content broke the layering. `.search-btn` now gets the same explicit per-theme treatment as the other two (see below) rather than sitting on an older unscoped base style.
 
 The two themes now render buttons differently, each with its own explicit `[data-theme="..."]` block (search for "Frosted glass keycap style" / "Same button shape" in Layout.astro):
 

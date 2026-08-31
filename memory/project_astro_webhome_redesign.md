@@ -1,11 +1,11 @@
 ---
 name: project-astro-webhome-redesign
-description: State of the astro-webhome wallpaper/solid theme redesign as of 2026-08-31 — glass buttons, unified frames, header/search merge
+description: State of the astro-webhome wallpaper/solid theme redesign as of 2026-08-31 — glass buttons, unified frames, header/search merge, page-title removal, tab redesign, solid-theme background image
 metadata:
   type: project
 ---
 
-As of 2026-08-31, did a full visual redesign pass on both themes of the astro-webhome bookmark dashboard (repo: `d:\My Backups\Bojan\astro-webhome`, deployed via Cloudflare Pages).
+As of 2026-08-31, did a full visual redesign pass on both themes of the astro-webhome bookmark dashboard (repo: `/home/bojanstrko/DATA/astro-webhome` on this machine, deployed via Cloudflare Pages).
 
 **What changed**, in order:
 1. Pulled in a prior "buttons redesign" commit (`e0d518e upd buttons and headers`) that local had been behind on.
@@ -20,3 +20,13 @@ As of 2026-08-31, did a full visual redesign pass on both themes of the astro-we
 **Why**: user is iterating live on the site's visual design via conversational back-and-forth, one small tweak at a time, on both a local dev server and eventually pushed to `main` (no PR workflow observed — pushes go straight to `main`).
 
 **How to apply**: Full details of the current frame/button/theme conventions are written into the project's own `CLAUDE.md` (Styling section) — read that first for anything touching Layout.astro's CSS, rather than re-deriving from scratch. See also [[feedback-verify-css-selectors-hit-real-dom]] and [[feedback-scope-then-mirror-themes]].
+
+**Continued same day, later session** (uncommitted as of this writing — CLAUDE.md and code reflect it, git history doesn't yet):
+9. Fixed a CI break: `package-lock.json` had lost its `@emnapi/core`/`@emnapi/runtime` entries (and picked up a stray `"peer": true` on vite) in an earlier commit, so `npm ci` failed in the GitHub Actions build with "can only install packages when lock file is in sync." Fix was `npm install` to resync the lock file — local `node_modules` already had the packages, so it was purely a stale-lockfile issue, not a real dependency change.
+10. Bumped the deploy workflow's actions (`.github/workflows/deploy.yml`) off Node 20 to clear GitHub's "forced to run on Node 24" deprecation warning: `checkout@v4→v7`, `setup-node@v4→v5`, `upload-pages-artifact@v3→v5`, `deploy-pages@v4→v5` — all confirmed to declare `node24` natively in their current majors.
+11. Removed the `<h1 class="page-header">` title from e-servisi/institucii/linux — the frame that used to sit below it (`.button-grid`, or the merged tabs frame, see #12) is now the element directly under the nav and got the squared-top-corner treatment `.groups-container` already had, so the nav→frame "adjacent panels with a gap" pattern (item 5 above) now applies uniformly across all four pages. Deleted the now-orphaned `.page-header` CSS (all three usages were removed) rather than leaving dead rules behind.
+12. Redesigned Institucii/Linux tabs: the tab-nav row and its content grid used to be two separate elements; they're now one merged card frame (`.institutional-tabs`/`.linux-tabs` is the card, the tab-nav is its top strip with a `border-bottom` divider), and the tab buttons were restyled from solid pill buttons to look like the navbar's own `.nav-tab` (transparent background, green underline on hover, green bordered box when active) — confirmed with the user via an explicit merged-vs-two-frames choice before building.
+13. `.search-btn` (the nav search bar's button) got the same per-theme keycap treatment `.link-item`/`.service-button` already had — frosted glass on `transparent`, same shape without blur on `solid` — closing the gap where it used to sit on an older unscoped base style even after item 3/6 above.
+14. Added a background image to the `solid` theme, which previously had none (flat gradient only): `public/solid-bg.jpg` (a teal/green "futuristic waves" vector the user supplied, resized from 5000×3333/9.7MB down to 2070×1164/416K via `magick ... -resize 2070x1164^ -gravity center -extent 2070x1164 -quality 85` to match `wallpaper.jpg`'s footprint), wired in through the same `--bg-image` custom-property pattern the `transparent` theme uses. Then, per explicit follow-up ask, gave `solid` theme's `--primary-bg`/`--secondary-bg`/`--accent-bg`/`--card-bg`/`--hover-bg` 90% opacity (rgba alpha 0.9, i.e. "10% transparency") so the image bleeds through surfaces slightly — with **no** `backdrop-filter`/blur and no glass border-shadow treatment added, since the user explicitly said solid theme should stay non-blurred/non-glassy even with the image behind it.
+
+**Pending**: none of this is committed yet — user handles `git add`/commit/push themselves (see [[feedback_git-security-discipline]] in the main memory store), likely via `git-push.ps1`.
