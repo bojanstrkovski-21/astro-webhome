@@ -21,7 +21,7 @@ Raw Everforest medium-dark palette vars (`--bg-dim`, `--bg0`..`--bg5`, `--fg`, `
 
 Two themes toggled via `data-theme` attribute on `<html>`, persisted to `localStorage['theme']`:
 
-- `solid` — flat colors, no image (sun icon)
+- `solid` — solid-bg.jpg background, opaque (non-blurred) cards (sun icon)
 - `transparent` — wallpaper.jpg background, translucent/blurred cards (moon icon)
 
 Toggle with `window.switchTheme('solid'|'transparent')` (exposed globally by the inline script in Layout.astro).

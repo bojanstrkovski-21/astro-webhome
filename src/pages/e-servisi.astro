@@ -26,8 +26,6 @@ const eServisi = [
 ---
 
 <Layout title="E-servisi - Bookmark Dashboard">
-  <h1 class="page-header">Е-СЕРВИСИ</h1>
-  
   <div class="button-grid" style="grid-template-columns: repeat(5, 1fr);">
     {eServisi.map(service => (
       <a href={service.url} target="_blank" class="service-button" data-abbrev={service.abbrev}>

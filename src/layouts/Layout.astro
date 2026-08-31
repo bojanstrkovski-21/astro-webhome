@@ -97,17 +97,18 @@ import '@fontsource/inter/700.css';
 
         /* Theme Variables */
         [data-theme="solid"] {
-            --primary-bg: var(--dark-blue);
-            --secondary-bg: var(--bg0);
-            --accent-bg: var(--bg2);
-            --card-bg: var(--bg1);
+            --primary-bg: rgba(58, 81, 93, 0.9);
+            --secondary-bg: rgba(45, 53, 59, 0.9);
+            --accent-bg: rgba(61, 72, 77, 0.9);
+            --card-bg: rgba(52, 63, 68, 0.9);
             --text-primary: var(--green);
             --text-secondary: var(--fg);
             --text-muted: var(--grey1);
             --text-accent: var(--blue);
             --border-color: var(--bg3);
-            --hover-bg: var(--bg2);
+            --hover-bg: rgba(61, 72, 77, 0.9);
             --button-hover: var(--yellow);
+            --bg-image: linear-gradient(135deg, rgba(35, 42, 46, 0.3) 0%, rgba(45, 53, 59, 0.3) 50%, rgba(52, 63, 68, 0.3) 100%), url('/solid-bg.jpg');
         }
         
         [data-theme="transparent"] {
@@ -143,9 +144,10 @@ import '@fontsource/inter/700.css';
         }
 
         [data-theme="solid"] html {
-            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            background: linear-gradient(135deg, rgba(35, 42, 46, 0.9) 0%, rgba(45, 53, 59, 0.9) 50%, rgba(52, 63, 68, 0.9) 100%), url('/solid-bg.jpg') #2d353b;
             background-size: cover;
             background-attachment: fixed;
+            background-position: center;
         }
 
         body {
@@ -164,9 +166,10 @@ import '@fontsource/inter/700.css';
         }
         
         [data-theme="solid"] body {
-            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            background: var(--bg-image, linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%));
             background-size: cover;
             background-attachment: fixed;
+            background-position: center;
         }
 
         .container {
@@ -531,10 +534,50 @@ import '@fontsource/inter/700.css';
 
         [data-theme="transparent"] .institutional-tabs {
             display: block;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
         }
 
         [data-theme="transparent"] .institutional-tab-content {
             padding: 0;
+        }
+
+        [data-theme="transparent"] .institutional-tab-content .group {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            backdrop-filter: none;
+            box-shadow: none;
+        }
+
+        [data-theme="transparent"] .linux-tabs {
+            display: block;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        [data-theme="transparent"] .linux-tab-content {
+            padding: 0;
+        }
+
+        [data-theme="transparent"] .linux-tab-content .group {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            backdrop-filter: none;
+            box-shadow: none;
         }
 
         [data-theme="transparent"] .group {
@@ -569,6 +612,8 @@ import '@fontsource/inter/700.css';
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 28px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
             padding: 22px 20px;
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -605,6 +650,40 @@ import '@fontsource/inter/700.css';
             box-shadow: none;
         }
 
+        [data-theme="solid"] .institutional-tabs {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        [data-theme="solid"] .institutional-tab-content .group {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        [data-theme="solid"] .linux-tabs {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        [data-theme="solid"] .linux-tab-content .group {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
         [data-theme="solid"] .links-grid,
         [data-theme="solid"] .institutional-grid {
             padding: 20px;
@@ -614,6 +693,8 @@ import '@fontsource/inter/700.css';
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 28px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
             padding: 22px 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
@@ -870,6 +951,44 @@ import '@fontsource/inter/700.css';
             top: 0;
         }
 
+        /* Search button gets the same frosted-glass keycap style, wallpaper theme only */
+        [data-theme="transparent"] .search-btn span {
+            border-radius: 16px;
+            background: linear-gradient(160deg, rgba(79, 88, 94, 0.28), rgba(61, 72, 77, 0.18));
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(14px) saturate(140%);
+            -webkit-backdrop-filter: blur(14px) saturate(140%);
+            box-shadow:
+                0 4px 10px -4px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25),
+                inset 0 -3px 4px rgba(0, 0, 0, 0.15);
+            overflow: visible;
+            position: relative;
+            transition: transform 0.06s ease-out, box-shadow 0.06s ease-out, filter 0.06s ease-out;
+        }
+
+        [data-theme="transparent"] .search-btn span::before {
+            content: none;
+        }
+
+        [data-theme="transparent"] .search-btn span i {
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            color: var(--fg);
+        }
+
+        [data-theme="transparent"] .search-btn:active span {
+            transform: scale(0.96);
+            filter: brightness(0.9);
+            box-shadow:
+                0 2px 4px -2px rgba(0, 0, 0, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.06);
+        }
+
+        [data-theme="transparent"] .search-btn:active span i {
+            top: 0;
+        }
+
         /* Same button shape/consistency for the solid theme, without the glass blur (nothing to blur without the wallpaper) */
         [data-theme="solid"] .link-item span,
         [data-theme="solid"] .service-button span {
@@ -910,68 +1029,93 @@ import '@fontsource/inter/700.css';
             top: 0;
         }
 
+        /* Search button gets the same shape/consistency on the solid theme too */
+        [data-theme="solid"] .search-btn span {
+            border-radius: 16px;
+            background: linear-gradient(160deg, rgba(79, 88, 94, 0.55), rgba(61, 72, 77, 0.45));
+            border: 1px solid var(--border-color);
+            box-shadow:
+                0 4px 10px -4px rgba(0, 0, 0, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.08),
+                inset 0 -3px 4px rgba(0, 0, 0, 0.2);
+            overflow: visible;
+            transition: transform 0.06s ease-out, box-shadow 0.06s ease-out, filter 0.06s ease-out;
+        }
+
+        [data-theme="solid"] .search-btn span::before {
+            content: none;
+        }
+
+        [data-theme="solid"] .search-btn span i {
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            color: var(--fg);
+        }
+
+        [data-theme="solid"] .search-btn:active span {
+            transform: scale(0.96);
+            filter: brightness(0.9);
+            box-shadow:
+                0 2px 4px -2px rgba(0, 0, 0, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.06);
+        }
+
+        [data-theme="solid"] .search-btn:active span i {
+            top: 0;
+        }
+
         .institutional-tabs {
             background: transparent;
             border-radius: 8px;
             padding: 0;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             box-shadow: none;
             border: none;
             backdrop-filter: none;
         }
-        
+
         .institutional-tab-nav {
             display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            border-bottom: none;
+            gap: 0;
+            margin-bottom: 0;
+            border-bottom: 1px solid var(--border-color);
         }
-        
+
         .institutional-tab-btn {
             flex: 1;
-            background: var(--primary-bg);
+            background: transparent;
             color: var(--text-secondary);
-            padding: 10px 14px;
+            padding: 15px 20px;
             border: none;
             cursor: pointer;
             font-size: 16px;
             font-weight: 600;
-            border-radius: 6px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            border-radius: 0;
+            box-shadow: none;
+            backdrop-filter: none;
+            transition: all 0.4s ease;
         }
 
-        [data-theme="transparent"] .institutional-tab-btn {
-            background: rgba(45, 53, 59, 0.7);
-        }
-        
-        .institutional-tab-btn:first-child {
-            border-top-left-radius: 8px;
-        }
-        
-        .institutional-tab-btn:last-child {
-            border-top-right-radius: 8px;
-        }
-        
         .institutional-tab-btn:hover {
-            background: var(--hover-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--text-primary);
-            border-radius: 6px;
+            background: transparent;
+            color: var(--green);
+            border-bottom: 2px solid var(--green);
+            box-shadow: 0 4px 12px rgba(167, 192, 128, 0.4);
         }
-        
+
         .institutional-tab-btn.active {
-            background: var(--card-bg);
-            color: var(--text-primary);
-            border: 2px solid var(--text-primary);
+            background: transparent;
+            color: var(--green);
+            border: 2px solid var(--green);
             border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(167, 192, 128, 0.4);
         }
-        
+
         .institutional-tab-content {
             display: none;
             padding: 0;
         }
-        
+
         .institutional-tab-content.active {
             display: block !important;
         }
@@ -980,69 +1124,59 @@ import '@fontsource/inter/700.css';
             background: transparent;
             border-radius: 8px;
             padding: 0;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             box-shadow: none;
             border: none;
             backdrop-filter: none;
         }
-        
+
         .tab-content-container {
             position: relative;
             min-height: 400px;
         }
-        
+
         .linux-tab-nav {
             display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            border-bottom: none;
+            gap: 0;
+            margin-bottom: 0;
+            border-bottom: 1px solid var(--border-color);
         }
-        
+
         .linux-tab-btn {
             flex: 1;
-            background: var(--primary-bg);
+            background: transparent;
             color: var(--text-secondary);
-            padding: 10px 14px;
+            padding: 15px 20px;
             border: none;
             cursor: pointer;
             font-size: 16px;
             font-weight: 600;
-            border-radius: 6px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            border-radius: 0;
+            box-shadow: none;
+            backdrop-filter: none;
+            transition: all 0.4s ease;
         }
 
-        [data-theme="transparent"] .linux-tab-btn {
-            background: rgba(45, 53, 59, 0.7);
-        }
-
-        .linux-tab-btn:first-child {
-            border-top-left-radius: 8px;
-        }
-        
-        .linux-tab-btn:last-child {
-            border-top-right-radius: 8px;
-        }
-        
         .linux-tab-btn:hover {
-            background: var(--hover-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--text-primary);
-            border-radius: 6px;
+            background: transparent;
+            color: var(--green);
+            border-bottom: 2px solid var(--green);
+            box-shadow: 0 4px 12px rgba(167, 192, 128, 0.4);
         }
-        
+
         .linux-tab-btn.active {
-            background: var(--card-bg);
-            color: var(--text-primary);
-            border: 2px solid var(--text-primary);
+            background: transparent;
+            color: var(--green);
+            border: 2px solid var(--green);
             border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(167, 192, 128, 0.4);
         }
-        
+
         .linux-tab-content {
             display: none;
             padding: 0;
         }
-        
+
         .linux-tab-content.active {
             display: block !important;
         }
