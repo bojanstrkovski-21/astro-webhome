@@ -344,34 +344,30 @@ import '@fontsource/inter/700.css';
         }
 
         [data-theme="transparent"] .page-header {
-            background: rgba(45, 53, 59, 0.7);
-        }
-
-        .search-container {
             background: var(--card-bg);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
         }
 
-        .search-box {
+        [data-theme="transparent"] .navigation {
+            margin-bottom: 10px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .nav-search-row {
             display: flex;
-            gap: 8px;
             align-items: center;
-            margin-bottom: 12px;
+            gap: 8px;
+            padding: 8px 30px 12px;
         }
 
         .search-input {
             flex: 1;
-            padding: 10px 15px;
+            padding: 6px 12px;
             border: 1px solid var(--border-color);
             border-radius: 6px;
             background: var(--primary-bg);
             color: var(--text-secondary);
-            font-size: 14px;
+            font-size: 13px;
             outline: none;
         }
 
@@ -381,14 +377,14 @@ import '@fontsource/inter/700.css';
         }
 
         .search-engine-select {
-            padding: 10px 12px;
+            padding: 6px 10px;
             border: 1px solid var(--border-color);
             border-radius: 6px;
             background: var(--primary-bg);
             color: var(--text-secondary);
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
-            min-width: 120px;
+            min-width: 100px;
             outline: none;
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -436,8 +432,8 @@ import '@fontsource/inter/700.css';
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            width: 140px;
-            min-height: 44px;
+            width: 100px;
+            min-height: 32px;
             padding: 0;
             border-color: transparent;
             transform: none;
@@ -449,8 +445,8 @@ import '@fontsource/inter/700.css';
             position: relative;
             width: 100%;
             height: 100%;
-            padding: 8px 15px;
-            margin: 4px 4px;
+            padding: 4px 12px;
+            margin: 2px 2px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -465,10 +461,10 @@ import '@fontsource/inter/700.css';
         .search-btn span::before {
             content: "";
             position: absolute;
-            top: 4px;
-            left: 3px;
-            bottom: 4px;
-            right: 9px;
+            top: 2px;
+            left: 2px;
+            bottom: 2px;
+            right: 6px;
             background: linear-gradient(90deg, var(--bg2), var(--bg4));
             border-radius: 10px;
             box-shadow: -10px -10px 10px rgba(255, 255, 255, 0.1),
@@ -482,17 +478,17 @@ import '@fontsource/inter/700.css';
             font-family: var(--font-family);
             position: relative;
             font-style: normal;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
             color: var(--fg);
         }
 
         .search-btn:active span::before {
-            top: 2px;
-            left: 1.5px;
-            bottom: 2px;
-            right: 4px;
+            top: 1px;
+            left: 1px;
+            bottom: 1px;
+            right: 3px;
         }
 
         .search-btn:active span i {
@@ -516,37 +512,118 @@ import '@fontsource/inter/700.css';
             gap: 12px;
         }
         
-        /* Remove column-based layout for transparent theme - make it match solid exactly */
+        /* Single frame around the whole groups-container on the wallpaper theme */
         [data-theme="transparent"] .groups-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
+            padding: 25px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
             margin-bottom: 30px;
         }
-        
+
         [data-theme="transparent"] .institutional-tabs {
             display: block;
         }
-        
+
         [data-theme="transparent"] .institutional-tab-content {
             padding: 0;
         }
-        
+
         [data-theme="transparent"] .group {
             flex: none;
             min-width: auto;
             max-width: none;
-            background: transparent;
-            backdrop-filter: none;
-            border: none;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
         }
-        
+
+        /* On the home page, groups sit as cells inside the single groups-container frame instead of their own */
+        [data-theme="transparent"] .groups-container .group {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            backdrop-filter: none;
+            box-shadow: none;
+        }
+
         [data-theme="transparent"] .links-grid,
         [data-theme="transparent"] .institutional-grid {
             display: grid;
             gap: 12px;
+            padding: 20px;
         }
-        
+
+        [data-theme="transparent"] .button-grid {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 22px 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Same single-frame layout on the solid theme */
+        [data-theme="solid"] .groups-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 25px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        [data-theme="solid"] .group {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        [data-theme="solid"] .groups-container .group {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        [data-theme="solid"] .links-grid,
+        [data-theme="solid"] .institutional-grid {
+            padding: 20px;
+        }
+
+        [data-theme="solid"] .button-grid {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 22px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="solid"] .navigation {
+            margin-bottom: 10px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
         .group {
             background: transparent;
             border-radius: 8px;
@@ -572,7 +649,23 @@ import '@fontsource/inter/700.css';
         }
 
         [data-theme="transparent"] .group-header {
-            background: rgba(45, 53, 59, 0.7);
+            background: transparent;
+            box-shadow: none;
+            backdrop-filter: none;
+            border-radius: 0;
+            margin-bottom: 0;
+            padding: 14px 20px 4px;
+            text-align: center;
+        }
+
+        [data-theme="solid"] .group-header {
+            background: transparent;
+            box-shadow: none;
+            backdrop-filter: none;
+            border-radius: 0;
+            margin-bottom: 0;
+            padding: 14px 20px 4px;
+            text-align: center;
         }
 
         .institutional-grid {
@@ -731,6 +824,89 @@ import '@fontsource/inter/700.css';
         }
 
         .service-button:active span i {
+            top: 0;
+        }
+
+        /* Frosted glass keycap style for the wallpaper theme only — solid theme keeps its own version below */
+        [data-theme="transparent"] .link-item span,
+        [data-theme="transparent"] .service-button span {
+            border-radius: 16px;
+            background: linear-gradient(160deg, rgba(79, 88, 94, 0.28), rgba(61, 72, 77, 0.18));
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(14px) saturate(140%);
+            -webkit-backdrop-filter: blur(14px) saturate(140%);
+            box-shadow:
+                0 4px 10px -4px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25),
+                inset 0 -3px 4px rgba(0, 0, 0, 0.15);
+            overflow: visible;
+            position: relative;
+            transition: transform 0.06s ease-out, box-shadow 0.06s ease-out, filter 0.06s ease-out;
+        }
+
+        [data-theme="transparent"] .link-item span::before,
+        [data-theme="transparent"] .service-button span::before {
+            content: none;
+        }
+
+        [data-theme="transparent"] .link-item span i,
+        [data-theme="transparent"] .service-button span i {
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            color: var(--fg);
+        }
+
+        [data-theme="transparent"] .link-item:active span,
+        [data-theme="transparent"] .service-button:active span {
+            transform: scale(0.96);
+            filter: brightness(0.9);
+            box-shadow:
+                0 2px 4px -2px rgba(0, 0, 0, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.06);
+        }
+
+        [data-theme="transparent"] .link-item:active span i,
+        [data-theme="transparent"] .service-button:active span i {
+            top: 0;
+        }
+
+        /* Same button shape/consistency for the solid theme, without the glass blur (nothing to blur without the wallpaper) */
+        [data-theme="solid"] .link-item span,
+        [data-theme="solid"] .service-button span {
+            border-radius: 16px;
+            background: linear-gradient(160deg, rgba(79, 88, 94, 0.55), rgba(61, 72, 77, 0.45));
+            border: 1px solid var(--border-color);
+            box-shadow:
+                0 4px 10px -4px rgba(0, 0, 0, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.08),
+                inset 0 -3px 4px rgba(0, 0, 0, 0.2);
+            overflow: visible;
+            transition: transform 0.06s ease-out, box-shadow 0.06s ease-out, filter 0.06s ease-out;
+        }
+
+        [data-theme="solid"] .link-item span::before,
+        [data-theme="solid"] .service-button span::before {
+            content: none;
+        }
+
+        [data-theme="solid"] .link-item span i,
+        [data-theme="solid"] .service-button span i {
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            color: var(--fg);
+        }
+
+        [data-theme="solid"] .link-item:active span,
+        [data-theme="solid"] .service-button:active span {
+            transform: scale(0.96);
+            filter: brightness(0.9);
+            box-shadow:
+                0 2px 4px -2px rgba(0, 0, 0, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.06);
+        }
+
+        [data-theme="solid"] .link-item:active span i,
+        [data-theme="solid"] .service-button:active span i {
             top: 0;
         }
 
@@ -966,18 +1142,20 @@ import '@fontsource/inter/700.css';
                 padding: 8px 10px;
             }
             
-            .search-container {
-                padding: 15px;
-            }
-            
-            .search-box {
+            .nav-search-row {
+                flex-wrap: wrap;
+                padding: 8px 15px 12px;
                 gap: 6px;
             }
-            
+
+            .search-input {
+                flex: 1 1 100%;
+            }
+
             .search-engine-select {
-                min-width: 100px;
-                padding: 10px 8px;
-                font-size: 13px;
+                min-width: 90px;
+                padding: 6px 8px;
+                font-size: 12px;
             }
         }
     </style>
@@ -1015,6 +1193,26 @@ import '@fontsource/inter/700.css';
                         <span class="theme-icon">☀️</span>
                     </button>
                 </div>
+            </div>
+            <div class="nav-search-row">
+                <input
+                    type="text"
+                    id="search-input"
+                    class="search-input"
+                    placeholder="Enter your search query..."
+                />
+                <select id="search-engine" class="search-engine-select">
+                    <option value="google">Google</option>
+                    <option value="bing">Bing</option>
+                    <option value="duckduckgo">DuckDuckGo</option>
+                    <option value="brave">Brave</option>
+                    <option value="yahoo">Yahoo</option>
+                    <option value="yandex">Yandex</option>
+                    <option value="baidu">Baidu</option>
+                </select>
+                <button onclick="performSearch()" class="search-btn">
+                    <span><i>Search</i></span>
+                </button>
             </div>
         </nav>
         <main>
